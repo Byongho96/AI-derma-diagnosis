@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'background_container.dart';
+import 'custom_background_container.dart';
 
 class CustomScaffold extends StatelessWidget {
   final PreferredSizeWidget? appBar;
@@ -19,16 +19,10 @@ class CustomScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BackgroundContainer(
+    return CustomBackgroundContainer(
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar:
-            appBar ??
-            AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              title: null,
-            ),
+        appBar: appBar,
         body: body,
         floatingActionButton: floatingActionButton,
         drawer: drawer,

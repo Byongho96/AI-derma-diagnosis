@@ -13,7 +13,7 @@ class CustomButton extends StatelessWidget {
     required this.text,
     required this.onPressed,
     this.width,
-    this.height = 45,
+    this.height = 40,
     this.backgroundColor,
     this.textColor = Colors.white, // 기본값 흰색
   });
@@ -35,7 +35,6 @@ class CustomButton extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-            fontSize: 16,
             fontWeight: FontWeight.w600,
             color: textColor, // 텍스트 색상 적용
           ),

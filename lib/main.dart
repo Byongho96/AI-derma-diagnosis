@@ -14,6 +14,13 @@ class MyApp extends StatelessWidget {
       title: 'AI-derma-diagnosis',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyan),
+        textTheme: Theme.of(context).textTheme.copyWith(
+          bodyMedium: const TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.w500,
+            color: Color(0xFF4A4A4A),
+          ),
+        ),
       ),
       initialRoute: '/',
       routes: AppRouter.routes,
