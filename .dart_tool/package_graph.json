@@ -8,7 +8,8 @@
       "version": "1.0.0+1",
       "dependencies": [
         "cupertino_icons",
-        "flutter"
+        "flutter",
+        "gap"
       ],
       "devDependencies": [
         "flutter_lints",
@@ -44,6 +45,13 @@
       "name": "cupertino_icons",
       "version": "1.0.8",
       "dependencies": []
+    },
+    {
+      "name": "gap",
+      "version": "3.0.1",
+      "dependencies": [
+        "flutter"
+      ]
     },
     {
       "name": "flutter",
