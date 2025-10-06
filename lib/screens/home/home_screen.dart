@@ -89,6 +89,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
+              CustomButton(
+                text: '대시보드',
+                backgroundColor: const Color(0xFF2897FF),
+                textColor: Colors.white,
+                onPressed: () {
+                  Navigator.pushNamed(context, '/dashboard');
+                },
+              ),
             ],
           ),
         ),
