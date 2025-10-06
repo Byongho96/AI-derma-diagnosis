@@ -5,6 +5,11 @@ class CustomBackgroundContainer extends StatelessWidget {
 
   const CustomBackgroundContainer({super.key, required this.child});
 
+  /*
+  decoration :  Container의 배경을 꾸미는 속성
+  padding : Container 내부 여백 설정
+  child : Container 내부에 표시할 위젯
+  */
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -14,7 +19,7 @@ class CustomBackgroundContainer extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
-      padding: const EdgeInsets.all(30),
+      padding: const EdgeInsets.all(15),
       child: child,
     );
   }

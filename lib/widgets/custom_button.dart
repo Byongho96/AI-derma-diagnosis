@@ -18,6 +18,14 @@ class CustomButton extends StatelessWidget {
     this.textColor = Colors.white, // 기본값 흰색
   });
 
+  /*
+  width : 버튼의 너비, 기본 100% (double.infinity)
+  height : 버튼의 높이
+  text : 버튼에 표시할 텍스트
+  onPressed : 버튼이 눌렸을 때 실행할 콜백 함수
+  backgroundColor : 버튼 배경색
+  textColor : 버튼 텍스트 색상
+  */
   @override
   Widget build(BuildContext context) {
     return SizedBox(

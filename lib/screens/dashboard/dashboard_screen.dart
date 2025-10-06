@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import 'package:ai_derma_diagnosis/widgets/custom_button.dart';
+import 'package:ai_derma_diagnosis/widgets/custom_appbar.dart';
 import 'package:ai_derma_diagnosis/widgets/custom_scaffold.dart';
 import 'package:ai_derma_diagnosis/widgets/custom_glass_container.dart';
 
@@ -16,11 +17,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
+      appBar: CustomAppBar(showBackButton: false),
       body: Center(
         child: SizedBox(
           width: double.infinity, // Column 너비 100%
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
                 width: double.infinity, // Row 너비 100%
