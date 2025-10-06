@@ -124,7 +124,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         text: '진단 시작하기',
                         backgroundColor: const Color(0xFF2897FF),
                         textColor: Colors.white,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/diagnosis');
+                        },
                       ),
                     ],
                   ),
