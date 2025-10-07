@@ -1,11 +1,14 @@
+import 'package:ai_derma_diagnosis/routes/app_routes.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:ai_derma_diagnosis/routes/app_routes.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'dart:io';
 
 import 'package:ai_derma_diagnosis/widgets/common/custom_appbar.dart';
 import 'package:ai_derma_diagnosis/widgets/common/custom_scaffold.dart';
 import 'package:ai_derma_diagnosis/widgets/common/custom_glass_container.dart';
+import 'package:ai_derma_diagnosis/widgets/diagnosis/diagnosis_guide.dart';
+import 'package:ai_derma_diagnosis/widgets/etc/photo_upload.dart';
 
 class DiagnosisScreen extends StatefulWidget {
   const DiagnosisScreen({super.key});
@@ -15,6 +18,28 @@ class DiagnosisScreen extends StatefulWidget {
 }
 
 class _DiagnosisScreenState extends State<DiagnosisScreen> {
+  XFile? _selectedImage; // 업로드 사진
+
+  Future<void> _pickImage() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      setState(() {
+        _selectedImage = image;
+      });
+    }
+  }
+
+  Future<void> _takePhoto() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.camera);
+    if (image != null) {
+      setState(() {
+        _selectedImage = image;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -27,70 +52,19 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
               CustomGlassContainer(
                 child: SizedBox(
                   width: double.infinity,
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.lightbulb,
-                            size: 15,
-                            color: Colors.yellow[700],
-                          ),
-                          Gap(5),
-                          Text('밝고 깨끗한 배경에서 촬영해주세요.'),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.lightbulb,
-                            size: 15,
-                            color: Colors.yellow[700],
-                          ),
-                          Gap(5),
-                          Text('피부가 잘 보이도록 촬영해주세요.'),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.lightbulb,
-                            size: 15,
-                            color: Colors.yellow[700],
-                          ),
-                          Gap(5),
-                          Text('적당한 거리에서 촬영해주세요.'),
-                        ],
-                      ),
-                    ],
-                  ),
+                  child: const DiagnosisGuide(),
                 ),
               ),
               const Gap(16),
               Expanded(
-                // Container를 Expanded로 감싸기 (남는 공간 전부 차지)
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
-                  child: Container(
-                    width: double.infinity,
-                    color: const Color.fromARGB(182, 255, 255, 255),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          'assets/svgs/diagnosis.svg',
-                          height: 50,
-                        ),
-                        const Gap(10),
-                        Text(
-                          '피부 사진을 촬영하거나 업로드하세요',
-                          style: TextStyle(color: Colors.black, fontSize: 15),
-                        ),
-                        const Gap(10),
-                        Text('얼굴 전체가 보이도록 촬영해주세요'),
-                      ],
-                    ),
-                  ),
+                  child: _selectedImage != null
+                      ? Image.file(
+                          File(_selectedImage!.path),
+                          fit: BoxFit.cover,
+                        )
+                      : const PhotoUpload(),
                 ),
               ),
               const Gap(16),
@@ -102,13 +76,11 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                     Expanded(
                       child: GestureDetector(
                         onTap: () {
-                          // 카메라 촬영 기능 실행
-                          print('카메라 촬영 버튼 클릭');
+                          // _takePhoto();
                           Navigator.pushNamed(
                             context,
                             AppRoutes.diagnosisResult,
                           );
-                          // TODO: 카메라 실행 로직 구현
                         },
                         child: CustomGlassContainer(
                           child: SizedBox(
@@ -117,7 +89,7 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: const [
                                 Icon(Icons.photo_camera, size: 25.0),
-                                Text('카메라 촬영'),
+                                Text('사진 촬영'),
                               ],
                             ),
                           ),
@@ -128,11 +100,7 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                     Expanded(
                       child: CustomGlassContainer(
                         child: GestureDetector(
-                          onTap: () {
-                            // 갤러리에서 사진 선택 기능 실행
-                            print('사진 업로드 버튼 클릭');
-                            // TODO: 갤러리 실행 로직 구현
-                          },
+                          onTap: _pickImage,
                           child: SizedBox(
                             height: 60,
                             child: Column(

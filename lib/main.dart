@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      initialRoute: '/',
+      initialRoute: '/login',
       routes: AppRouter.routes,
     );
   }

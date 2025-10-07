@@ -70,6 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   backgroundColor: const Color(0xFF2897FF),
                   textColor: Colors.white,
                   onPressed: () {
+                    Navigator.pushNamed(context, AppRoutes.home);
                     final email = emailController.text;
                     final password = passwordController.text;
                     print('Email: $email, Password: $password');
@@ -93,14 +94,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ],
-                ),
-                CustomButton(
-                  text: '대시보드 임시 버튼',
-                  backgroundColor: const Color(0xFF2897FF),
-                  textColor: Colors.white,
-                  onPressed: () {
-                    Navigator.pushNamed(context, AppRoutes.home);
-                  },
                 ),
               ],
             ),

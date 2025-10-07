@@ -105,7 +105,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, AppRoutes.home);
+                        Navigator.pushNamed(context, AppRoutes.login);
                       },
                       child: const Text(
                         '로그인',

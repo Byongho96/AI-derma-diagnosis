@@ -24,7 +24,7 @@ class DiagnosisResultChart extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('최근 진단 결과'),
+              const Text('진단 결과'),
               if (date != null)
                 Text(
                   '${date!.year}.${date!.month.toString().padLeft(2, '0')}.${date!.day.toString().padLeft(2, '0')}',
