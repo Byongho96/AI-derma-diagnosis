@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:ai_derma_diagnosis/routes/app_routes.dart';
 
-import 'package:ai_derma_diagnosis/widgets/custom_appbar.dart';
-import 'package:ai_derma_diagnosis/widgets/custom_scaffold.dart';
-import 'package:ai_derma_diagnosis/widgets/custom_glass_container.dart';
+import 'package:ai_derma_diagnosis/widgets/common/custom_appbar.dart';
+import 'package:ai_derma_diagnosis/widgets/common/custom_scaffold.dart';
+import 'package:ai_derma_diagnosis/widgets/common/custom_glass_container.dart';
 
 class DiagnosisScreen extends StatefulWidget {
   const DiagnosisScreen({super.key});
@@ -27,15 +27,40 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                 child: SizedBox(
                   width: double.infinity,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        '촬영 가이드',
-                        style: TextStyle(fontSize: 15, color: Colors.black),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.lightbulb,
+                            size: 15,
+                            color: Colors.yellow[700],
+                          ),
+                          Gap(5),
+                          Text('밝고 깨끗한 배경에서 촬영해주세요.'),
+                        ],
                       ),
-                      Text('1. 밝고 깨끗한 배경에서 촬영하세요.'),
-                      Text('2. 피부가 잘 보이도록 촬영하세요.'),
-                      Text('3. 너무 가까이서 촬영하지 마세요.'),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.lightbulb,
+                            size: 15,
+                            color: Colors.yellow[700],
+                          ),
+                          Gap(5),
+                          Text('피부가 잘 보이도록 촬영해주세요.'),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.lightbulb,
+                            size: 15,
+                            color: Colors.yellow[700],
+                          ),
+                          Gap(5),
+                          Text('적당한 거리에서 촬영해주세요.'),
+                        ],
+                      ),
                     ],
                   ),
                 ),
@@ -60,17 +85,17 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      child: CustomGlassContainer(
-                        child: GestureDetector(
-                          onTap: () {
-                            // 카메라 촬영 기능 실행
-                            print('카메라 촬영 버튼 클릭');
-                            Navigator.pushNamed(
-                              context,
-                              AppRoutes.diagnosisResult,
-                            );
-                            // TODO: 카메라 실행 로직 구현
-                          },
+                      child: GestureDetector(
+                        onTap: () {
+                          // 카메라 촬영 기능 실행
+                          print('카메라 촬영 버튼 클릭');
+                          Navigator.pushNamed(
+                            context,
+                            AppRoutes.diagnosisResult,
+                          );
+                          // TODO: 카메라 실행 로직 구현
+                        },
+                        child: CustomGlassContainer(
                           child: SizedBox(
                             height: 60,
                             child: Column(

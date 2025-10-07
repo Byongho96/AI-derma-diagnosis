@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ai_derma_diagnosis/widgets/custom_scaffold.dart';
-import 'package:ai_derma_diagnosis/widgets/custom_glass_container.dart';
-import 'package:ai_derma_diagnosis/widgets/custom_button.dart';
-import 'package:ai_derma_diagnosis/widgets/custom_input.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ai_derma_diagnosis/widgets/common/custom_scaffold.dart';
+import 'package:ai_derma_diagnosis/widgets/common/custom_glass_container.dart';
+import 'package:ai_derma_diagnosis/widgets/common/custom_button.dart';
+import 'package:ai_derma_diagnosis/widgets/common/custom_input.dart';
 import 'package:gap/gap.dart';
 import 'package:ai_derma_diagnosis/routes/app_routes.dart';
 
@@ -42,6 +43,7 @@ class _SignupScreenState extends State<SignupScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                SvgPicture.asset('assets/svgs/diagnosis.svg', height: 50),
                 Text(
                   'Skin Care AI',
                   style: const TextStyle(

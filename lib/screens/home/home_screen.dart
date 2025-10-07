@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:ai_derma_diagnosis/widgets/custom_scaffold.dart';
-import 'package:ai_derma_diagnosis/widgets/custom_glass_container.dart';
-import 'package:ai_derma_diagnosis/widgets/custom_button.dart';
-import 'package:ai_derma_diagnosis/widgets/custom_input.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+
+import 'package:ai_derma_diagnosis/widgets/common/custom_scaffold.dart';
+import 'package:ai_derma_diagnosis/widgets/common/custom_glass_container.dart';
+import 'package:ai_derma_diagnosis/widgets/common/custom_button.dart';
+import 'package:ai_derma_diagnosis/widgets/common/custom_input.dart';
 import 'package:ai_derma_diagnosis/routes/app_routes.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -37,6 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                SvgPicture.asset('assets/svgs/diagnosis.svg', height: 50),
                 Text(
                   'Skin Care AI',
                   style: const TextStyle(
@@ -45,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Color(0xFF93CBFF),
                   ),
                 ),
-                const Gap(20),
+                const Gap(10),
                 Text('AI 기반 피부 진단으로 더 건강한 피부를 만나보세요'),
                 const Gap(20),
                 CustomInput(

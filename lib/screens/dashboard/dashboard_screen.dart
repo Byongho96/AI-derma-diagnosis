@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ai_derma_diagnosis/routes/app_routes.dart';
 
-import 'package:ai_derma_diagnosis/widgets/custom_button.dart';
-import 'package:ai_derma_diagnosis/widgets/custom_appbar.dart';
-import 'package:ai_derma_diagnosis/widgets/custom_scaffold.dart';
-import 'package:ai_derma_diagnosis/widgets/custom_glass_container.dart';
+import 'package:ai_derma_diagnosis/widgets/common/custom_button.dart';
+import 'package:ai_derma_diagnosis/widgets/common/custom_appbar.dart';
+import 'package:ai_derma_diagnosis/widgets/common/custom_scaffold.dart';
+import 'package:ai_derma_diagnosis/widgets/common/custom_glass_container.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -27,8 +28,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               SizedBox(
                 width: double.infinity, // Row 너비 100%
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment
-                      .spaceBetween, // justify-content: space-between
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
                       child: CustomGlassContainer(
@@ -40,15 +40,23 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                     const Gap(16),
                     Expanded(
-                      child: CustomGlassContainer(
-                        child: SizedBox(
-                          height: 80,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.history_rounded, size: 25.0),
-                              Text('기록보기'),
-                            ],
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            AppRoutes.diagnosisHistory,
+                          );
+                        },
+                        child: CustomGlassContainer(
+                          child: SizedBox(
+                            height: 80,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.history_rounded, size: 25.0),
+                                Text('기록보기'),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -113,6 +121,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      SvgPicture.asset('assets/svgs/diagnosis.svg', height: 50),
+                      const Gap(20),
                       Text(
                         '첫 번째 피부 진단을 시작해보세요!',
                         style: TextStyle(fontSize: 15, color: Colors.black),
@@ -122,7 +132,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       Text('개인 맞춤 케어 가이드를 받아보세요'),
                       const Gap(15),
                       CustomButton(
-                        text: '진단 시작하기',
+                        text: '진단하기',
                         backgroundColor: const Color(0xFF2897FF),
                         textColor: Colors.white,
                         onPressed: () {

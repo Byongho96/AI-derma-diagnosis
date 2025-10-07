@@ -45,14 +45,11 @@ class _DiagnosisResultScreenState extends State<DiagnosisResultScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
-                          child: CustomGlassContainer(
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  AppRoutes.diagnosis,
-                                );
-                              },
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, AppRoutes.diagnosis);
+                            },
+                            child: CustomGlassContainer(
                               child: SizedBox(
                                 height: 60,
                                 child: Column(
@@ -68,14 +65,14 @@ class _DiagnosisResultScreenState extends State<DiagnosisResultScreen> {
                         ),
                         const Gap(16),
                         Expanded(
-                          child: CustomGlassContainer(
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  AppRoutes.diagnosisHistory,
-                                );
-                              },
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                AppRoutes.diagnosisHistory,
+                              );
+                            },
+                            child: CustomGlassContainer(
                               child: SizedBox(
                                 height: 60,
                                 child: Column(
