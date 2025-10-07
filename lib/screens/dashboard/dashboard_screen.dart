@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:ai_derma_diagnosis/routes/app_routes.dart';
 
 import 'package:ai_derma_diagnosis/widgets/custom_button.dart';
 import 'package:ai_derma_diagnosis/widgets/custom_appbar.dart';
@@ -46,7 +47,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(Icons.history_rounded, size: 25.0),
-                              Text('과거 기록 보기'),
+                              Text('기록보기'),
                             ],
                           ),
                         ),
@@ -125,7 +126,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         backgroundColor: const Color(0xFF2897FF),
                         textColor: Colors.white,
                         onPressed: () {
-                          Navigator.pushNamed(context, '/diagnosis');
+                          Navigator.pushNamed(context, AppRoutes.diagnosis);
                         },
                       ),
                     ],

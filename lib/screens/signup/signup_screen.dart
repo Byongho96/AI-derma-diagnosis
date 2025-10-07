@@ -4,6 +4,7 @@ import 'package:ai_derma_diagnosis/widgets/custom_glass_container.dart';
 import 'package:ai_derma_diagnosis/widgets/custom_button.dart';
 import 'package:ai_derma_diagnosis/widgets/custom_input.dart';
 import 'package:gap/gap.dart';
+import 'package:ai_derma_diagnosis/routes/app_routes.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -102,7 +103,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/');
+                        Navigator.pushNamed(context, AppRoutes.home);
                       },
                       child: const Text(
                         '로그인',

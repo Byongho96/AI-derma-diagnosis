@@ -4,6 +4,7 @@ import 'package:ai_derma_diagnosis/widgets/custom_glass_container.dart';
 import 'package:ai_derma_diagnosis/widgets/custom_button.dart';
 import 'package:ai_derma_diagnosis/widgets/custom_input.dart';
 import 'package:gap/gap.dart';
+import 'package:ai_derma_diagnosis/routes/app_routes.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -81,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/signup');
+                        Navigator.pushNamed(context, AppRoutes.signup);
                       },
                       child: const Text(
                         '회원가입',
@@ -95,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   backgroundColor: const Color(0xFF2897FF),
                   textColor: Colors.white,
                   onPressed: () {
-                    Navigator.pushNamed(context, '/dashboard');
+                    Navigator.pushNamed(context, AppRoutes.dashboard);
                   },
                 ),
               ],
