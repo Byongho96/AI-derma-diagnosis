@@ -39,7 +39,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             width: 30,
           ),
           onPressed: () {
-            Navigator.pushNamed(context, AppRoutes.home);
+            Navigator.pushNamed(context, AppRoutes.login);
           },
         ),
         const SizedBox(width: 8),

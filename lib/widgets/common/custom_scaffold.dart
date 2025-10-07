@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'custom_background_container.dart';
+import 'package:ai_derma_diagnosis/widgets/common/custom_background_container.dart';
 
 class CustomScaffold extends StatelessWidget {
   final PreferredSizeWidget? appBar;

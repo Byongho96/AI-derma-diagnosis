@@ -23,6 +23,7 @@ class CustomGlassContainer extends StatelessWidget {
           //   ),
           // ],
         ),
+        // 자식 위젯까지 BoderRadius 적용을 위해 ClipRRect 사용
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: BackdropFilter(

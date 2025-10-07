@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:ai_derma_diagnosis/routes/app_routes.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:ai_derma_diagnosis/widgets/common/custom_appbar.dart';
 import 'package:ai_derma_diagnosis/widgets/common/custom_scaffold.dart';
@@ -68,12 +69,26 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
               const Gap(16),
               Expanded(
                 // Container를 Expanded로 감싸기 (남는 공간 전부 차지)
-                child: Container(
-                  color: Colors.grey,
-                  child: const Center(
-                    child: Text(
-                      '촬영된 이미지 미리보기',
-                      style: TextStyle(color: Colors.white),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Container(
+                    width: double.infinity,
+                    color: const Color.fromARGB(182, 255, 255, 255),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          'assets/svgs/diagnosis.svg',
+                          height: 50,
+                        ),
+                        const Gap(10),
+                        Text(
+                          '피부 사진을 촬영하거나 업로드하세요',
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                        ),
+                        const Gap(10),
+                        Text('얼굴 전체가 보이도록 촬영해주세요'),
+                      ],
                     ),
                   ),
                 ),

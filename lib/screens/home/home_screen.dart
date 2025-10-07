@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ai_derma_diagnosis/routes/app_routes.dart';
 
+import 'package:ai_derma_diagnosis/widgets/common/custom_button.dart';
+import 'package:ai_derma_diagnosis/widgets/common/custom_appbar.dart';
 import 'package:ai_derma_diagnosis/widgets/common/custom_scaffold.dart';
 import 'package:ai_derma_diagnosis/widgets/common/custom_glass_container.dart';
-import 'package:ai_derma_diagnosis/widgets/common/custom_button.dart';
-import 'package:ai_derma_diagnosis/widgets/common/custom_input.dart';
-import 'package:ai_derma_diagnosis/routes/app_routes.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,101 +16,137 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // 컨트롤러 선언
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-
-  @override
-  void dispose() {
-    // 컨트롤러 해제
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
+      appBar: CustomAppBar(showBackButton: false),
       body: Center(
-        child: CustomGlassContainer(
-          alignment: Alignment.center,
-          child: Padding(
-            padding: EdgeInsets.all(20), // 세로 방향 위젯 배치
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SvgPicture.asset('assets/svgs/diagnosis.svg', height: 50),
-                Text(
-                  'Skin Care AI',
-                  style: const TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF93CBFF),
-                  ),
-                ),
-                const Gap(10),
-                Text('AI 기반 피부 진단으로 더 건강한 피부를 만나보세요'),
-                const Gap(20),
-                CustomInput(
-                  label: '이메일',
-                  controller: emailController,
-                  hintText: '이메일을 입력하세요',
-                  keyboardType: TextInputType.emailAddress,
-                ),
-                const Gap(20),
-                CustomInput(
-                  label: '비밀번호',
-                  controller: passwordController,
-                  hintText: '비밀번호를 입력하세요',
-                  obscureText: true,
-                ),
-                const Gap(30),
-                CustomButton(
-                  text: '로그인',
-                  backgroundColor: const Color(0xFF2897FF),
-                  textColor: Colors.white,
-                  onPressed: () {
-                    final email = emailController.text;
-                    final password = passwordController.text;
-                    print('Email: $email, Password: $password');
-                  },
-                ),
-                const Gap(20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+        child: SizedBox(
+          width: double.infinity, // Column 너비 100%
+          child: Column(
+            children: [
+              SizedBox(
+                width: double.infinity, // Row 너비 100%
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      '계정이 없으신가요? ',
-                      style: TextStyle(color: Color(0xFF4A4A4A)),
+                    Expanded(
+                      child: CustomGlassContainer(
+                        child: SizedBox(
+                          height: 80,
+                          child: Center(child: Text('Hello')),
+                        ),
+                      ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, AppRoutes.signup);
-                      },
-                      child: const Text(
-                        '회원가입',
-                        style: TextStyle(color: Color(0xFF2897FF), height: 1.5),
+                    const Gap(16),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            AppRoutes.diagnosisHistory,
+                          );
+                        },
+                        child: CustomGlassContainer(
+                          child: SizedBox(
+                            height: 80,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.history_rounded, size: 25.0),
+                                Text('기록보기'),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ],
                 ),
-                CustomButton(
-                  text: '대시보드 임시 버튼',
-                  backgroundColor: const Color(0xFF2897FF),
-                  textColor: Colors.white,
-                  onPressed: () {
-                    Navigator.pushNamed(context, AppRoutes.dashboard);
-                  },
+              ),
+              const Gap(16),
+              SizedBox(
+                width: double.infinity,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: CustomGlassContainer(
+                        child: SizedBox(
+                          height: 80,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.signal_cellular_alt_rounded,
+                                size: 25.0,
+                                color: Colors.green,
+                              ),
+                              Text('진단 횟수'),
+                              const Gap(4),
+                              Text('0 회', style: TextStyle(fontSize: 15)),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Gap(16),
+                    Expanded(
+                      child: CustomGlassContainer(
+                        child: SizedBox(
+                          height: 80,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.assignment_turned_in_rounded,
+                                size: 25.0,
+                                color: Colors.purple[400],
+                              ),
+                              Text('평균 점수'),
+                              const Gap(4),
+                              Text('0 점', style: TextStyle(fontSize: 16)),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              const Gap(16),
+              CustomGlassContainer(
+                child: Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset('assets/svgs/diagnosis.svg', height: 50),
+                      const Gap(20),
+                      Text(
+                        '첫 번째 피부 진단을 시작해보세요!',
+                        style: TextStyle(fontSize: 15, color: Colors.black),
+                      ),
+                      const Gap(15),
+                      Text('AI가 분석한 정확한 피부 상태를 확인하고'),
+                      Text('개인 맞춤 케어 가이드를 받아보세요'),
+                      const Gap(15),
+                      CustomButton(
+                        text: '진단하기',
+                        backgroundColor: const Color(0xFF2897FF),
+                        textColor: Colors.white,
+                        onPressed: () {
+                          Navigator.pushNamed(context, AppRoutes.diagnosis);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 }
-
-// StatefulWidget 클래스는 State 객체를 만들어 주는 역할만 수행 : '이 위젯은 상태를 가질 수 있다'의 틀만 제공
-// 실제 화면의 UI와 State은 State 클래스에서 모두 처리
-// 이렇게 분리할 경우, 상태가 바뀔 때마다 State만 새로 그리면 되므로 성능 최적화에 유리
