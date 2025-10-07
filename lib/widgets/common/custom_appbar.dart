@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ai_derma_diagnosis/routes/app_routes.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
@@ -32,10 +33,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           : null,
       actions: [
         IconButton(
-          icon: const Icon(
-            Icons.account_circle,
-            color: Color(0xFF2897FF),
-            size: 30,
+          icon: SvgPicture.asset(
+            'assets/svgs/account.svg',
+            height: 30,
+            width: 30,
           ),
           onPressed: () {
             Navigator.pushNamed(context, AppRoutes.home);

@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
-import 'package:ai_derma_diagnosis/routes/app_routes.dart';
-
-import 'package:ai_derma_diagnosis/widgets/custom_appbar.dart';
-import 'package:ai_derma_diagnosis/widgets/custom_scaffold.dart';
-import 'package:ai_derma_diagnosis/widgets/custom_glass_container.dart';
+import 'package:ai_derma_diagnosis/widgets/common/custom_appbar.dart';
+import 'package:ai_derma_diagnosis/widgets/common/custom_scaffold.dart';
 
 class DiagnosisHistoryScreen extends StatefulWidget {
   const DiagnosisHistoryScreen({super.key});

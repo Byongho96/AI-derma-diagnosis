@@ -31,7 +31,7 @@ class CustomGlassContainer extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               alignment: alignment,
               decoration: BoxDecoration(
-                color: const Color.fromARGB(92, 255, 255, 255),
+                color: const Color.fromARGB(84, 255, 255, 255),
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(
                   color: const Color.fromARGB(194, 255, 255, 255),
