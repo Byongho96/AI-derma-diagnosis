@@ -6,6 +6,7 @@ import 'package:ai_derma_diagnosis/screens/home/home_screen.dart';
 import 'package:ai_derma_diagnosis/screens/diagnosis/diagnosis_screen.dart';
 import 'package:ai_derma_diagnosis/screens/diagnosis_result/diagnosis_result_screen.dart';
 import 'package:ai_derma_diagnosis/screens/diagnosis_history/diagnosis_history_screen.dart';
+import 'package:ai_derma_diagnosis/screens/account_settings/account_settings_screen.dart';
 
 class AppRouter {
   static Map<String, WidgetBuilder> get routes => {
@@ -15,5 +16,6 @@ class AppRouter {
     AppRoutes.diagnosis: (context) => const DiagnosisScreen(),
     AppRoutes.diagnosisResult: (context) => const DiagnosisResultScreen(),
     AppRoutes.diagnosisHistory: (context) => const DiagnosisHistoryScreen(),
+    AppRoutes.accountSettings: (context) => const AccountSettingsScreen(),
   };
 }
