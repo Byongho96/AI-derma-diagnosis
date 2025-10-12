@@ -52,7 +52,7 @@ class DiagnosisResultBarState extends State<DiagnosisResultBar>
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(widget.label, style: const TextStyle(color: Colors.black)),
+            Text(widget.label),
             Text(
               '${widget.grade}점',
               style: const TextStyle(color: Colors.orange),

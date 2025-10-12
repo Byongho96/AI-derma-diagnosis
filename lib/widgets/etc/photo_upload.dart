@@ -15,10 +15,7 @@ class PhotoUpload extends StatelessWidget {
         children: [
           SvgPicture.asset('assets/svgs/diagnosis.svg', height: 50),
           const Gap(10),
-          Text(
-            '피부 사진을 촬영하거나 업로드하세요',
-            style: TextStyle(color: Colors.black, fontSize: 15),
-          ),
+          Text('피부 사진을 촬영하거나 업로드하세요', style: TextStyle(fontSize: 16)),
           const Gap(10),
           Text('얼굴 전체가 보이도록 촬영해주세요'),
         ],

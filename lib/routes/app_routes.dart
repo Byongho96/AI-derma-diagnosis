@@ -6,4 +6,5 @@ class AppRoutes {
   static const diagnosisResult = '/diagnosis_result';
   static const diagnosisHistory = '/diagnosis_history';
   static const accountSettings = '/account_settings';
+  static const notifications = '/notifications';
 }

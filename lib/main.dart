@@ -16,9 +16,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyan),
         textTheme: Theme.of(context).textTheme.copyWith(
           bodyMedium: const TextStyle(
-            fontSize: 13,
+            fontSize: 14,
             fontWeight: FontWeight.w500,
-            color: Color(0xFF4A4A4A),
           ),
         ),
       ),

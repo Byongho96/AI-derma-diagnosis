@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               Text('진단 횟수'),
                               const Gap(4),
-                              Text('0 회', style: TextStyle(fontSize: 15)),
+                              Text('0 회', style: TextStyle(fontSize: 16)),
                             ],
                           ),
                         ),
@@ -125,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       const Gap(20),
                       Text(
                         '첫 번째 피부 진단을 시작해보세요!',
-                        style: TextStyle(fontSize: 15, color: Colors.black),
+                        style: TextStyle(fontSize: 16),
                       ),
                       const Gap(15),
                       Text('AI가 분석한 정확한 피부 상태를 확인하고'),
