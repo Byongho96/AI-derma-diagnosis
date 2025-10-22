@@ -6,6 +6,7 @@ import 'package:ai_derma_diagnosis/widgets/common/custom_button.dart';
 import 'package:ai_derma_diagnosis/widgets/common/custom_input.dart';
 import 'package:gap/gap.dart';
 import 'package:ai_derma_diagnosis/routes/app_routes.dart';
+import 'package:ai_derma_diagnosis/repositories/auth_repository.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -86,7 +87,32 @@ class _SignupScreenState extends State<SignupScreen> {
     return null;
   }
 
-  Future<void> _handleSignup() async {}
+  Future<void> _handleSignup() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+
+    setState(() => _isLoading = true);
+
+    final success = await AuthRepository.signup(
+      username: nameController.text.trim(),
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
+    );
+
+    setState(() => _isLoading = false);
+
+    if (success) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('회원가입이 완료되었습니다!')));
+      Navigator.pop(context); // 로그인 화면으로 이동
+    } else {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('회원가입에 실패했습니다.')));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

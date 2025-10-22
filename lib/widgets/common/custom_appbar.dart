@@ -21,16 +21,20 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.transparent,
       elevation: 0,
       automaticallyImplyLeading: false,
-      leading: showBackButton
-          ? IconButton(
-              icon: const Icon(
-                Icons.arrow_back_ios,
-                color: Colors.black,
-                size: 20,
-              ),
-              onPressed: () => Navigator.pop(context),
-            )
-          : null,
+      // leading: showBackButton
+      //     ? IconButton(
+      //         icon: const Icon(
+      //           Icons.arrow_back_ios,
+      //           color: Colors.black,
+      //           size: 20,
+      //         ),
+      //         onPressed: () => Navigator.pop(context),
+      //       )
+      //     : null,
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back_ios, color: Colors.black, size: 20),
+        onPressed: () => Navigator.pop(context),
+      ),
       actions: [
         IconButton(
           icon: SvgPicture.asset(
