@@ -30,19 +30,6 @@ class AuthService {
   static Future<User?> autoLogin() async {
     return await AuthRepository.checkAuthStatus();
   }
-
-  // 5. 비밀번호 변경 예시
-  static Future<bool> changeUserPassword() async {
-    return await AuthRepository.changePassword(
-      currentPassword: 'oldpassword',
-      newPassword: 'newpassword123',
-    );
-  }
-
-  // 6. 비밀번호 재설정 요청 예시
-  static Future<bool> resetPassword() async {
-    return await AuthRepository.requestPasswordReset('test@example.com');
-  }
 }
 
 // 실제 사용 예시 함수들
@@ -76,21 +63,6 @@ void authUsageExamples() async {
   } else {
     print('자동 로그인 실패 - 로그인 필요');
   }
-
-  // 비밀번호 변경
-  print('\n=== 비밀번호 변경 ===');
-  bool changeSuccess = await AuthRepository.changePassword(
-    currentPassword: 'securepassword123',
-    newPassword: 'newsecurepassword456',
-  );
-  print('비밀번호 변경 결과: $changeSuccess');
-
-  // 비밀번호 재설정 요청
-  print('\n=== 비밀번호 재설정 요청 ===');
-  bool resetSuccess = await AuthRepository.requestPasswordReset(
-    'newuser@example.com',
-  );
-  print('비밀번호 재설정 요청 결과: $resetSuccess');
 
   // 로그아웃
   print('\n=== 로그아웃 ===');

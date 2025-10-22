@@ -1,5 +1,6 @@
 import 'app_routes.dart';
 import 'package:flutter/material.dart';
+// import 'package:ai_derma_diagnosis/screens/splash/splash_screen.dart';
 import 'package:ai_derma_diagnosis/screens/login/login_screen.dart';
 import 'package:ai_derma_diagnosis/screens/signup/signup_screen.dart';
 import 'package:ai_derma_diagnosis/screens/home/home_screen.dart';
@@ -11,6 +12,7 @@ import 'package:ai_derma_diagnosis/screens/notifications/notifications_screen.da
 
 class AppRouter {
   static Map<String, WidgetBuilder> get routes => {
+    // AppRoutes.splash: (context) => const SplashScreen(),
     AppRoutes.home: (context) => const HomeScreen(),
     AppRoutes.login: (context) => const LoginScreen(),
     AppRoutes.signup: (context) => const SignupScreen(),

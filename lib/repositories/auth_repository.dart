@@ -1,25 +1,91 @@
 import '../services/api_service.dart';
 import '../models/user.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class AuthRepository {
-  // 간단한 토큰 저장용 변수들 (실제로는 SharedPreferences나 Secure Storage 사용 권장)
-  static String? _accessToken;
-  static String? _refreshToken;
+  // Secure Storage 인스턴스 (보안 강화)
+  static const _secureStorage = FlutterSecureStorage();
 
-  // 토큰 저장
-  static void setTokens(String accessToken, {String? refreshToken}) {
-    _accessToken = accessToken;
-    _refreshToken = refreshToken;
-    // ApiService에도 토큰 설정
-    ApiService.setToken(accessToken);
+  // ❌ 메모리 캐시 제거 - 보안 강화를 위해 메모리에 토큰 저장하지 않음
+  // ✅ ApiService는 HTTP 요청을 위해서만 토큰 보유
+  // ✅ Secure Storage의 보안 효과 유지
+
+  // 앱 시작 시 저장된 토큰 로드
+  static Future<void> loadTokens() async {
+    try {
+      final accessToken = await _secureStorage.read(key: 'access_token');
+
+      // ApiService에만 토큰 설정 (HTTP 요청용)
+      if (accessToken != null) {
+        ApiService.setToken(accessToken);
+      }
+    } catch (e) {
+      print('토큰 로드 실패: $e');
+    }
   }
 
-  // 토큰 삭제
-  static void clearTokens() {
-    _accessToken = null;
-    _refreshToken = null;
-    // ApiService의 토큰도 삭제
-    ApiService.clearToken();
+  // 토큰 저장 (Secure Storage만 사용)
+  static Future<void> setTokens(
+    String accessToken, {
+    String? refreshToken,
+  }) async {
+    try {
+      // Secure Storage에 암호화하여 저장
+      await _secureStorage.write(key: 'access_token', value: accessToken);
+      if (refreshToken != null) {
+        await _secureStorage.write(key: 'refresh_token', value: refreshToken);
+      }
+
+      // ApiService에만 토큰 설정 (HTTP 인터셉터용)
+      ApiService.setToken(accessToken);
+    } catch (e) {
+      print('토큰 저장 실패: $e');
+    }
+  }
+
+  // 토큰 삭제 (Secure Storage + ApiService)
+  static Future<void> clearTokens() async {
+    try {
+      // Secure Storage에서 삭제
+      await _secureStorage.delete(key: 'access_token');
+      await _secureStorage.delete(key: 'refresh_token');
+
+      // ApiService의 토큰도 삭제
+      ApiService.clearToken();
+    } catch (e) {
+      print('토큰 삭제 실패: $e');
+    }
+  }
+
+  // 저장된 토큰 확인
+  static Future<bool> hasValidToken() async {
+    try {
+      final accessToken = await _secureStorage.read(key: 'access_token');
+      return accessToken != null && accessToken.isNotEmpty;
+    } catch (e) {
+      print('토큰 확인 실패: $e');
+      return false;
+    }
+  }
+
+  // 저장된 토큰 가져오기 (필요시에만 사용)
+  static Future<String?> getAccessToken() async {
+    try {
+      return await _secureStorage.read(key: 'access_token');
+    } catch (e) {
+      print('토큰 조회 실패: $e');
+      return null;
+    }
+  }
+
+  // refresh 토큰 가져오기 (필요시에만 사용)
+  static Future<String?> getRefreshToken() async {
+    try {
+      return await _secureStorage.read(key: 'refresh_token');
+    } catch (e) {
+      print('리프레시 토큰 조회 실패: $e');
+      return null;
+    }
   }
 
   // 회원가입
@@ -57,7 +123,7 @@ class AuthRepository {
         final accessToken = response.data['access_token'];
         final refreshToken = response.data['refresh_token'];
 
-        setTokens(accessToken, refreshToken: refreshToken);
+        await setTokens(accessToken, refreshToken: refreshToken);
 
         // 사용자 정보 반환
         if (response.data['user'] != null) {
@@ -83,22 +149,27 @@ class AuthRepository {
     }
 
     // 로컬 토큰 삭제
-    clearTokens();
+    await clearTokens();
     return true;
   }
 
   // 토큰 검증 및 자동 로그인
   static Future<User?> checkAuthStatus() async {
     try {
-      // 저장된 토큰이 있는지 확인
-      if (_accessToken == null) return null;
+      // 저장된 토큰 로드
+      // 저장된 토큰 로드
+      await loadTokens();
+
+      // 토큰이 있는지 확인
+      final hasToken = await hasValidToken();
+      if (!hasToken) return null;
 
       // 현재 사용자 정보 조회로 토큰 유효성 확인
       return await _getCurrentUser();
     } catch (e) {
       print('인증 상태 확인 실패: $e');
       // 토큰이 무효한 경우 삭제
-      clearTokens();
+      await clearTokens();
       return null;
     }
   }
