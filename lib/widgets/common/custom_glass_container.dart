@@ -10,37 +10,35 @@ class CustomGlassContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 내부 컨텐츠 높이에 맞추기 위해 IntrinsicHeight 사용
-    return IntrinsicHeight(
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          // boxShadow: [
-          //   BoxShadow(
-          //     color: const Color.fromRGBO(0, 0, 0, 0.1),
-          //     spreadRadius: 3,
-          //     blurRadius: 10,
-          //     offset: const Offset(0, 4),
-          //   ),
-          // ],
-        ),
-        // 자식 위젯까지 BoderRadius 적용을 위해 ClipRRect 사용
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              alignment: alignment,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(84, 255, 255, 255),
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                  color: const Color.fromARGB(194, 255, 255, 255),
-                  width: 1.5,
-                ),
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        // boxShadow: [
+        //   BoxShadow(
+        //     color: const Color.fromRGBO(0, 0, 0, 0.1),
+        //     spreadRadius: 3,
+        //     blurRadius: 10,
+        //     offset: const Offset(0, 4),
+        //   ),
+        // ],
+      ),
+      // 자식 위젯까지 BoderRadius 적용을 위해 ClipRRect 사용
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            alignment: alignment,
+            decoration: BoxDecoration(
+              color: const Color.fromARGB(84, 255, 255, 255),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: const Color.fromARGB(194, 255, 255, 255),
+                width: 1.5,
               ),
-              child: child,
             ),
+            child: child,
           ),
         ),
       ),

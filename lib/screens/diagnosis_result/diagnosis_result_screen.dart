@@ -93,9 +93,7 @@ class _DiagnosisResultScreenState extends State<DiagnosisResultScreen> {
               } else {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: CustomGlassContainer(
-                    child: const DiagnosisResultChart(),
-                  ),
+                  child: CustomGlassContainer(child: DiagnosisResultChart()),
                 );
               }
             },

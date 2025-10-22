@@ -79,7 +79,7 @@ class DiagnosisResultBarState extends State<DiagnosisResultBar>
           ),
         ),
         const Gap(4),
-        Text(widget.description),
+        Text(widget.description, style: const TextStyle(fontSize: 13)),
       ],
     );
   }

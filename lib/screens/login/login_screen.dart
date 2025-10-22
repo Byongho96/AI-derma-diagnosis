@@ -16,7 +16,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  // 컨트롤러 선언
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -27,6 +26,8 @@ class _LoginScreenState extends State<LoginScreen> {
     passwordController.dispose();
     super.dispose();
   }
+
+  Future<void> _handleLogin() async {}
 
   @override
   Widget build(BuildContext context) {
@@ -71,9 +72,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   textColor: Colors.white,
                   onPressed: () {
                     Navigator.pushNamed(context, AppRoutes.home);
-                    final email = emailController.text;
-                    final password = passwordController.text;
-                    print('Email: $email, Password: $password');
+                    // final email = emailController.text;
+                    // final password = passwordController.text;
+                    // print('Email: $email, Password: $password');
+                    // _handleLogin();
                   },
                 ),
                 const Gap(20),

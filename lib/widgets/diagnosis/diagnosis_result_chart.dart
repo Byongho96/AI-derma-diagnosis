@@ -29,7 +29,9 @@ class DiagnosisResultChart extends StatelessWidget {
                 Text(
                   '${date!.year}.${date!.month.toString().padLeft(2, '0')}.${date!.day.toString().padLeft(2, '0')}',
                   style: const TextStyle(color: Colors.grey),
-                ),
+                )
+              else
+                const Text('날짜  정보 없음'),
             ],
           ),
           const Gap(8),
@@ -43,9 +45,7 @@ class DiagnosisResultChart extends StatelessWidget {
           ...List.generate(
             scores.length,
             (index) => Padding(
-              padding: EdgeInsets.only(
-                bottom: index != scores.length - 1 ? 16.0 : 0,
-              ),
+              padding: EdgeInsets.only(bottom: 10),
               child: DiagnosisResultBar(
                 label: kCategories[index],
                 grade: scores[index].toString(),

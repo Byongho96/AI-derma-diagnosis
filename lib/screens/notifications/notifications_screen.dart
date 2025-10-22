@@ -117,7 +117,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 onChanged: (val) {
                   setState(() => alarms[index].enabled = val);
                 },
-                activeColor: const Color(0xFF2897FF),
+                activeThumbColor: const Color(0xFF2897FF),
               ),
               onTap: () {
                 // 알람 수정 화면으로 이동 (추후 구현)
